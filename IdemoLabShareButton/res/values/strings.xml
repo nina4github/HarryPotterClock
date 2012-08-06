@@ -3,7 +3,7 @@
     <string name="app_name">IdemoLabShareButton</string>
     <string name="hello_world">Hello this is the IdemoLabShareButton :) launch the widget!</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">IdemoLab ShareButton</string>
     <string name="widget_statusmessage">person 1 status message</string>
 
 </resources>
