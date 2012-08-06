@@ -5,5 +5,7 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">IdemoLab ShareButton</string>
     <string name="widget_statusmessage">person 1 status message</string>
+    <string name="add_message_label">create message</string>
+    <string name="view_people_label">idemolabbers</string>
 
 </resources>
