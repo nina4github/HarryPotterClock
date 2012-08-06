@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/background_dark"
+    android:orientation="horizontal"
+    android:padding="@dimen/widget_margin" >
+
+    <!--  This should be dinamically created and wrapped within a ViewFlipper layout  -->
+
+    <ImageView
+        android:id="@+id/personImageMessage"
+        android:layout_width="69dp"
+        android:layout_height="69dp"
+    
+        android:padding="1dp"
+        android:src="@drawable/idemolab" />
+
+<TextView
+    android:id="@+id/personMessage"
+    android:layout_width="161dp"
+    android:layout_height="69dp"
+    android:padding="1dp"
+    android:text="@string/widget_statusmessage"
+    android:textColor="@android:color/white"
+    android:textColorLink="@android:color/white"
+    android:textSize="22dp" />
+
+    <ImageView
+        android:id="@+id/personImage"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+   
+        android:src="@drawable/ic_launcher" />
+
+</LinearLayout>
