@@ -157,6 +157,7 @@ void tweet(char msg[48]){
 
           if (twitter.post_status(msg))
             Serial.println("Status updated");
+            
           else
             Serial.println("Update failed");
        }
