@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Activities@IdemoLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    
+
+
+    <!-- Le styles -->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+
+      }
+
+    </style>
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">activities@IdemoLab</a>
+          <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="icon-user"></i> IdemoLab
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">About</a></li>
+	<!--      <li class="divider"></li>
+              <li><a href="#">Sign Out</a></li> -->
+            </ul>
+          </div>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="#people">People</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#activities">Activities</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span2 well">
+				<p>here goes some text describing the page</p>
+				<p><a class="btn btn-primary btn-small">More &raquo;</a></p>
+	           </div><!--/well-->
+			<div class="span10" id="boxes-container">
+				<!-- here go the boxes templates injected through js-->
+			</div><!-- /#boxes-container-->
+	 	</div><!--/.row-fluid-->
+	
+		<div class="row-fluid carousel">
+		</div><!--/.row-fluid-->
+    </div><!--/.fluid-container-->
+	
+ 	<footer class="container-fluid">
+        <p>&copy; Elena for Delta IdemoLab 2012</p>
+      </footer><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
+
+	<!-- additional javascript-->
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/assets/js/templates.js"></script>
+	<script src="http://platform.twitter.com/anywhere.js?id=XqEWPKcib9LYeV0BoHfCrA&v=1" type="text/javascript"></script>
+	<script type = "text/javascript">
+	$(document).ready(function()
+	    {
+	
+			/* ** PARSE timeline ** */
+			
+			// PEOPLE construct an array of people, for each of them you have an array of results corresponding to the elements that mention them or are written by them
+			
+			// PROJECTS construct an array of projects, for each of them you have an array of results that refer to them with # (result.text.indexOf(#))
+			
+			// PLACES construct an array of places (start with a static one) and for each of them you have an array of results that refer to them (result.text.indexOf("place"))
+			
+			// ACTIVITIES
+			
+			
+			/* ** SOCKET CONNECTIONS on twitter and twitter-stream ** */
+	  		var socket = io.connect('http://localhost:8000');
+	  		
+			socket.on('twitter_stream',function(data){
+				var people = get_people_from_results([data]);
+				$.each(people,function (key,element){
+				//	console.log('.box.'+element+ ' p.box-content');
+				//	console.log($('.box.'+ element +' p.box-content').html());
+					$('.box.'+element+ ' p.box-content').html("UPDATE "+data.text+"</br>");
+				})
+
+			});
+			
+			socket.on('twitter', function (timeline) {
+				// console.log(timeline);
+				/* PEOPLE can be both static (given array) 
+				 *  or dynamic (retrieved from the available tweets)
+				 */
+				var people = get_people_from_results(timeline);
+				//console.log("people: "+people.length + " " +people);
+				
+				/* PEOPLE - TIMELINE
+				 * organize for each person the tweets related to them
+				 * TODO: now it displays only the last tweet emitted. 
+				 * 		I would like a carousel of todays status updates
+				 */
+				var people_timelines = get_results_for_people(people,timeline);
+				
+				/* 
+				 * Initialize the boxes for each person
+				 */
+				var lasttweetindex = null;
+				$.each(people, function (index,person){
+
+					if (index%4==0){
+						console.log("index: "+index);						
+						$('#boxes-container').append('<div class="row-fluid boxes-row-'+(index/4)+'">');
+					}
+
+					$('#boxes-container .row-fluid.boxes-row-'+Math.floor(index/4)).append( build_person_box(person) );	
+					$.each(timeline, function(key,element) {	
+						if (element.id == people_timelines[person][0]){
+							lasttweetindex=key;
+						} 
+					}); // end .each 
+					$('.box.'+person).append(populate_person_box(timeline[lasttweetindex]));	
+				});
+			
+	  		});
+			
+
+			twttr.anywhere(function(twitter) {
+									twitter(".box").linkifyUsers();
+								});
+		});
+	</script>
+
+  </body>
+</html>

@@ -129,7 +129,7 @@ loop()
     */ 
     // when appropriate tweet the message once please! :)
 
-      char msg[48] = "@elena_idemolab is testing tweeting again :)";
+      char msg[48] = "@elena_idemolab is testing tweeting :)";
       tweet(msg);
 }
 void tweet(char msg[48]){
