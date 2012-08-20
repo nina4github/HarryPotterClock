@@ -12,6 +12,7 @@
 
     <!-- Le styles -->
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../assets/css/idemostyle.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -62,9 +63,9 @@
           </div>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#people">People</a></li>
-              <li><a href="#projects">Projects</a></li>
-              <li><a href="#activities">Activities</a></li>
+              <li class="active"><a href="#">People</a></li>
+              <li><a href="#">Projects</a></li>
+              <li><a href="#">Activities</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -75,7 +76,7 @@
 		<div class="row-fluid">
 			<div class="span2 well">
 				<p>here goes some text describing the page</p>
-				<p><a class="btn btn-primary btn-small">More &raquo;</a></p>
+				<p><a class="btn btn-primary btn-small" id="click">More &raquo;</a></p>
 	           </div><!--/well-->
 			<div class="span10" id="boxes-container">
 				<!-- here go the boxes templates injected through js-->
@@ -110,11 +111,28 @@
 	<!-- additional javascript-->
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="/assets/js/templates.js"></script>
+	<script src="/assets/js/configuration.js"></script>
+	<script src="/assets/js/peoplepage.js"></script>
+	<script src="/assets/js/activitiespage.js"></script>
+	<script src="/assets/js/jquery.blink.js"></script>
 	<script src="http://platform.twitter.com/anywhere.js?id=XqEWPKcib9LYeV0BoHfCrA&v=1" type="text/javascript"></script>
 	<script type = "text/javascript">
 	$(document).ready(function()
 	    {
-	
+		
+		
+		
+		$('#click').click(function() {
+			  // $('#boxes-container .ninatesting').animate({
+			  // 			    opacity: 0.1,
+			  // 			  }, 100).animate({
+			  // 				    opacity: 1,
+			  // 				  }, 1000);
+			  // 			});
+			$('#boxes-container .ninatesting').blink({"maxBlinks":2});
+			});
+			
+			// 	console.log(window.location.hash);
 			/* ** PARSE timeline ** */
 			
 			// PEOPLE construct an array of people, for each of them you have an array of results corresponding to the elements that mention them or are written by them
@@ -129,57 +147,41 @@
 			/* ** SOCKET CONNECTIONS on twitter and twitter-stream ** */
 	  		var socket = io.connect('http://localhost:8000');
 	  		
+			// when a new result is sent from the stream update the corresponding box
 			socket.on('twitter_stream',function(data){
-				var people = get_people_from_results([data]);
-				$.each(people,function (key,element){
-				//	console.log('.box.'+element+ ' p.box-content');
-				//	console.log($('.box.'+ element +' p.box-content').html());
-					$('.box.'+element+ ' p.box-content').html("UPDATE "+data.text+"</br>");
-				})
+				update_people_boxes(data); 
+				twttr.anywhere(function(twitter) {
+						twitter(".box").linkifyUsers();
+						});
 
 			});
 			
 			socket.on('twitter', function (timeline) {
-				// console.log(timeline);
-				/* PEOPLE can be both static (given array) 
-				 *  or dynamic (retrieved from the available tweets)
-				 */
-				var people = get_people_from_results(timeline);
-				//console.log("people: "+people.length + " " +people);
-				
-				/* PEOPLE - TIMELINE
-				 * organize for each person the tweets related to them
-				 * TODO: now it displays only the last tweet emitted. 
-				 * 		I would like a carousel of todays status updates
-				 */
-				var people_timelines = get_results_for_people(people,timeline);
-				
-				/* 
-				 * Initialize the boxes for each person
-				 */
-				var lasttweetindex = null;
-				$.each(people, function (index,person){
-
-					if (index%4==0){
-						console.log("index: "+index);						
-						$('#boxes-container').append('<div class="row-fluid boxes-row-'+(index/4)+'">');
-					}
-
-					$('#boxes-container .row-fluid.boxes-row-'+Math.floor(index/4)).append( build_person_box(person) );	
-					$.each(timeline, function(key,element) {	
-						if (element.id == people_timelines[person][0]){
-							lasttweetindex=key;
-						} 
-					}); // end .each 
-					$('.box.'+person).append(populate_person_box(timeline[lasttweetindex]));	
-				});
-			
+				// load a different template depending on the tab you are in 
+				if(window.location.hash=="#people"){
+					// clean boxes container
+					$("#boxes-container").html("");
+					create_people_page(timeline);
+				}
+				else if(window.location.hash=="#activities"){
+					$("#boxes-container").html("activities");
+					create_activities_page(timeline);
+				}
+				else if(window.location.hash=="#projects"){
+					$("#boxes-container").html("projects");
+					//create_projects_page(timeline);
+				}
+				else{	
+					$("#boxes-container").html("");
+					create_people_page(timeline);
+				}
+				twttr.anywhere(function(twitter) {
+						twitter(".box").linkifyUsers();
+						});
 	  		});
 			
 
-			twttr.anywhere(function(twitter) {
-									twitter(".box").linkifyUsers();
-								});
+			
 		});
 	</script>
 

@@ -7,29 +7,7 @@ function box(result){
 	return box;
 }
 
-// this is the box of a mention
-// therefore I need to 
-function person_box(result){
-	var username = result.user.name
-		, userimage = result.user.profile_image_url;
-	
-	var box = '<div class="span3 person box"><h2>'+username+'</h2><div class="row-fluid"> <p> <a href="#" class="thumbnail span4"> <img src="'+ userimage +'" alt="">     </a></p>          <p class="span8">'+text+'</p> </div><!--/row-->          <p><a class="btn" href="#">Project x</a><a class="btn" href="#">Project y</a></p> </div><!--/span-->';
-	return box;
-}
 
-
-function build_person_box(person){
-	var box = '<div class="span3 person box '+person+'"><h2>'+person+'</h2></div><!--/span-->';
-	return box;
-}
-
-function populate_person_box(result){
-	var username = result.user.name
-		, userimage = result.user.profile_image_url
-		, text = result.text;
- 	var box_content = '<div class="row-fluid"> <p> <a href="#" class="thumbnail span4"> <img src="'+ userimage +'" alt="">     </a></p>          <p class="span8 box-content">'+text+'</p> </div><!--/row-->          <p><a class="btn" href="#">Project x</a><a class="btn" href="#">Project y</a></p>';
-	return box_content;
-}
 
 function addto_person_box(result){
 	
@@ -72,7 +50,7 @@ function get_results_for_people(people,timeline){
 	for (i = 0; i<people.length;i++){
 		people_timeline[people[i]] = [];
 	}
-	console.log(people_timeline);
+	//console.log(people_timeline);
 	for (i = 0; i<timeline.length;i++){
 		// case 1: no explicit mention detected
 		if(timeline[i].in_reply_to_screen_name == null){
@@ -119,7 +97,7 @@ function get_results_for_people(people,timeline){
 		
 		//people_timeline.push([people[i],null]);
 	}
-	console.log(people_timeline);
+	//console.log(people_timeline);
 	return people_timeline;
 }
 

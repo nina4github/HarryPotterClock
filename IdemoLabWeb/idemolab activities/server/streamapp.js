@@ -50,7 +50,7 @@ twit.stream('statuses/filter', {'follow':'744944190'},
 io.sockets.on('connection', function (socket) {
 	twit.verifyCredentials(function (err, data) {
 		//console.log(data);
-	}).getUserTimeline(function (err, data) {
+	}).getUserTimeline({'include_entities':'true'},function (err, data) {
 		 	console.log("timeline: "+data);
 			socket.emit('twitter',data);
 		}
