@@ -4,11 +4,11 @@
  * from http://www.gumbolabs.org/2009/10/17/parallax-rfid-reader-arduino/
  *
  */
-#define RFID_ENABLE 2   //to RFID ENABLE
+#define RFID_ENABLE 7   //to RFID ENABLE
 #define CODE_LEN 10      //Max length of RFID tag
 #define VALIDATE_TAG 1  //should we validate tag?
 #define VALIDATE_LENGTH  200 //maximum reads b/w tag read and validate
-#define ITERATION_LENGTH 2000 //time, in ms, given to the user to move hand away
+#define ITERATION_LENGTH 1000 //time, in ms, given to the user to move hand away
 #define START_BYTE 0x0A 
 #define STOP_BYTE 0x0D
  

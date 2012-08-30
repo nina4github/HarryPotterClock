@@ -51,7 +51,7 @@ uint8_t mac[6] =     {
  */
 //IPAddress dns(192, 168, 0, 195); 
 
-IPAddress ip(192, 168, 0, 195);
+IPAddress ip(192, 168, 0, 100);
 IPAddress gateway(192, 168, 0, 1);
 IPAddress subnet(255, 255, 255, 0);
 
@@ -79,7 +79,7 @@ int count = 0;
 
 /*RFID*/
 
-#define RFID_ENABLE 7   //to RFID ENABLE
+
 #define CODE_LEN 10      //Max length of RFID tag
 #define VALIDATE_TAG 1  //should we validate tag?
 #define VALIDATE_LENGTH  200 //maximum reads b/w tag read and validate
@@ -87,8 +87,9 @@ int count = 0;
 #define START_BYTE 0x0A 
 #define STOP_BYTE 0x0D
 /* RFID pins. */
-#define RF_RX_PIN 8
-#define RF_TX_PIN 9
+#define RFID_ENABLE 6   //to RFID ENABLE
+#define RF_RX_PIN 7
+#define RF_TX_PIN 8
 
 char tag[CODE_LEN];  
 //boolean parse_fail=true;
@@ -118,7 +119,7 @@ setup()
   if (Ethernet.begin(mac))
   {
     Serial.println("DHCP: OK");
-    Ethernet.localIP().printTo(Serial);
+    //Ethernet.localIP().printTo(Serial);
     Serial.println("");
   }
   else
@@ -278,7 +279,7 @@ void disableRFID() {
  * Blocking function, waits for and gets the RFID tag.
  */
 void getRFIDTag() {
- // Serial.println("get_rfid");
+  Serial.println("get_rfid");
   byte next_byte; 
   while(rfid_serial.available() <= 0) {
   }

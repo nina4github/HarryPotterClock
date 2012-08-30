@@ -51,7 +51,7 @@ uint8_t mac[6] =     {
  */
 //IPAddress dns(192, 168, 0, 195); 
 
-IPAddress ip(192, 168, 0, 195);
+IPAddress ip(192, 168, 0, 100);
 IPAddress gateway(192, 168, 0, 1);
 IPAddress subnet(255, 255, 255, 0);
 
@@ -79,7 +79,7 @@ int count = 0;
 
 /*RFID*/
 
-#define RFID_ENABLE 7   //to RFID ENABLE
+
 #define CODE_LEN 10      //Max length of RFID tag
 #define VALIDATE_TAG 1  //should we validate tag?
 #define VALIDATE_LENGTH  200 //maximum reads b/w tag read and validate
@@ -87,18 +87,19 @@ int count = 0;
 #define START_BYTE 0x0A 
 #define STOP_BYTE 0x0D
 /* RFID pins. */
-#define RF_RX_PIN 8
-#define RF_TX_PIN 9
+#define RFID_ENABLE 6   //to RFID ENABLE
+#define RF_RX_PIN 7
+#define RF_TX_PIN 8
 
 char tag[CODE_LEN];  
 //boolean parse_fail=true;
 
 SoftwareSerial rfid_serial = SoftwareSerial(RF_RX_PIN, RF_TX_PIN);
 
-char* msg = "";
-char* person = 0;
-char* activity =0;
-char* project= 0;
+
+//IPAddress server(192,168,0,175); // change to PRODUCTION SERVER (mac mini of the lab) on idemolab network
+IPAddress server(192,168,0,175); // TEST SERVER IP elna mac book pro through CABLE on TAGTEC router 
+EthernetClient client;
 
 void
 setup()
@@ -118,7 +119,7 @@ setup()
   if (Ethernet.begin(mac))
   {
     Serial.println("DHCP: OK");
-    Ethernet.localIP().printTo(Serial);
+    //Ethernet.localIP().printTo(Serial);
     Serial.println("");
   }
   else
@@ -127,7 +128,99 @@ setup()
   Ethernet.begin(mac, ip, dns, gateway, subnet);
 #endif
 
-  twitter.set_twitter_endpoint(PSTR("api.twitter.com"),
+ connectTwitter();
+ delay(500);
+// connectClient();
+}
+
+
+void
+loop()
+{
+   // SUMMARY:
+  // first read rfid
+  // if there is a new tag
+  // second get rfid tag values from server
+  // if we have actor, activity | project set
+  // third send tweet 
+
+  if (true){
+    /* FIRST STEP */
+    enableRFID();
+
+    getRFIDTag();
+
+    /* SECOND STEP */
+    if(isCodeValid()) {
+      disableRFID();
+      
+      // DEBUG
+      //sendCode();
+      Serial.print("found valid tag: ");
+      Serial.println(tag);
+      // end DEBUG
+      
+      /* here goes the parsing :)*/
+
+     if(!client.connected()){
+      // client.flush();
+       connectClient();
+      }
+      requestTagInfo(); // get the values associated with the tag just scanned
+      delay(10); // important!!
+      read_and_parseTagInfo(); // read get response
+
+      delay(ITERATION_LENGTH);
+    } 
+    else {
+      disableRFID();
+      Serial.println("Got some noise");  
+    }
+    
+    rfid_serial.flush();
+    clearCode();
+
+  }/* THIRD STEP */
+  else{ // we have a message to send
+    //    if (twitter.is_ready())
+    //    {
+    //      //unsigned long now = twitter.get_time();
+    //      // DEBUG
+    //      Serial.println("twitter is ready ");
+    //      // end DEBUG
+    //      sendTweet();
+    //    }
+    Serial.println("here tweet the message :)");
+    //clearVariables();
+  }
+  
+}
+
+/**
+ * Clears out the memory space for the tag to 0s.
+ */
+void clearCode() {
+  for(int i=0; i<CODE_LEN; i++) {
+    tag[i] = 0; 
+  }
+}
+
+
+void connectClient(){
+  Serial.println("GETTAG connecting...");
+  client.connect(server, 8080);
+  
+  delay(200);
+
+  if (!client.connected()){
+    // kf you didn't get a connection to the server:
+    Serial.println("GETTAG connection failed");
+  }
+  else Serial.println("GETTAG connected");
+}
+
+void connectTwitter(){
+   twitter.set_twitter_endpoint(PSTR("api.twitter.com"),
   PSTR("/1/statuses/update.json"),
   twitter_ip, twitter_port, false);
   twitter.set_client_id(consumer_key, consumer_secret);
@@ -145,119 +238,16 @@ setup()
   //  twitter.set_account_id(PSTR("14266044-by72PfntsUVNEmpFeBbFZWhbQK3zQvTHfx7WqXucl"),
   //                         PSTR("pfIrL41dCz9qnXW8PGHFWdNhCJlCiE1TcG4LD7RRyOY"));
   //#endif
-
-  delay(500);
-}
-
-void
-loop()
-{
-  if (twitter.is_ready())
-  {
-    //unsigned long now = twitter.get_time();
-    //Serial.println("twitter is ready ");
-    enableRFID(); 
-    getRFIDTag();
-
-    if(isCodeValid()) {
-      disableRFID();
-
-      /* here goes the logic :)*/
-
-      if (isActivityTag()&&person==0){
-        // FEEDBACK
-        //Serial.print("Good the activity is set to ");
-        Serial.print(activity);
-        Serial.println( " now ADD WHO you are OR your PROJECT");
-        // end FEEDBACK
-      }
-      else if (isProjectTag()&&person==0){
-        // FEEDBACK
-        Serial.print( project);
-        Serial.println( " now ADD WHO you are OR your current ACTIVITY");
-        // end FEEDBACK
-      }
-
-      else if ((isPersonTag()&&(activity!=0||project!=0))
-        ||((isActivityTag()||isProjectTag())&&person!=0)){
-
-        // FEEDBACK
-        Serial.print( person);
-        Serial.println( " now we can SEND your message");  
-        // end FEEDBACK
-
-        sendTweet();
-
-      }
-      else if (isPersonTag()&&(activity==0||project==0)){
-        //FEEDBACK
-        Serial.print(person);
-        Serial.println( " now ADD your activity or project");
-        // end FEEDBACK
-      }
-      else {
-        Serial.println("not recognized :( start again!");
-        clearVariables();
-      }
-
-      delay(ITERATION_LENGTH);
-    } 
-    else {
-      disableRFID();
-      Serial.println("Got some noise");  
-    }
-}
-    rfid_serial.flush();
-    Serial.flush();
-    clearCode();
-  
-}
-
-/**
- * Clears out the memory space for the tag to 0s.
- */
-void clearCode() {
-  for(int i=0; i<CODE_LEN; i++) {
-    tag[i] = 0; 
-  }
-}
-
-void clearVariables(){
-  person=0;
-  activity=0;
-  project = 0;
-  msg = 0;
 }
 
 void sendTweet(){
-
-  // SEND MESSAGE
-  // FEEDBACK
-//  Serial.print("MESSAGE: ");
-//  Serial.print( person);
-//  Serial.print( "  ");
-//  if(activity!=0) Serial.print( activity);
-//  Serial.print( "  ");
-//  if (project!=0)     Serial.println(project);
-//  Serial.println( "  ");
-  // end FEEDBACK
-  strcpy(msg,person);
-  strcat(msg, " ");
-  if(activity!=0) strcat(msg,activity);
-  strcat(msg, " ");
-  if(project!=0) strcat(msg,project);
   
-//  Serial.print("MESSAGE: ");
-//  Serial.println(msg);
-  // reset variables for the next activity message 
-  
-
   // SEND TWEET
-    if (twitter.post_status(msg))
+    if (twitter.post_status("ready"))
       Serial.println("Status updated");
     else
       Serial.println("Update failed");
-   clearVariables();
+//   clearVariables();
 
 }
 
@@ -278,7 +268,7 @@ void disableRFID() {
  * Blocking function, waits for and gets the RFID tag.
  */
 void getRFIDTag() {
- // Serial.println("get_rfid");
+  Serial.println("ready for RFID");
   byte next_byte; 
   while(rfid_serial.available() <= 0) {
   }
@@ -318,38 +308,62 @@ boolean isCodeValid() {
 }
 
 
-boolean isPersonTag(){
-
-  if (strncmp(tag,"2700BA6F2A",10)==0){ //A
-    person = "@morten_idemolab";
-    return true;
-  }
-//  else if (strncmp(tag,"2600D659FB",10)==0){
-//    person = "@mikkel_idemolab";
-//
-//    return true;
-//  }
-  else return false;
-
+void requestTagInfo(){
+    // Make a HTTP request:
+    Serial.println("making request");
+    client.print("GET /tag/");
+    //client.print(tag); // this gives many troubles!! :)
+    for(int i=0; i<CODE_LEN; i++) {
+      client.print(tag[i]); 
+    } 
+    client.println(" HTTP/1.1");
+    //    client.println("GET /tag/2C00AC6C33 HTTP/1.0");
+    client.println("Connection: keep-alive");
+    client.println();
 }
 
-boolean isActivityTag(){
-  if (strncmp(tag,"2C00AC6C33",10)==0){
-    activity ="#coffee";
-    return true;
+void read_and_parseTagInfo(){
+  int counter = 0;
+  int i = 0;
+
+  while (client.available()){
+    char c = client.read();
+    
+    // counter 4 new line and print what comes next
+    if (c=='\n'){//&& counter<6){
+      counter = counter+1;
+    }
+    else if (counter==6){
+      // put c in the buffer!
+      buffer[i]=c;
+      i=i+1;
+      Serial.print(c);
+    } 
+
   }
-  else return false;  
+
+  char response[i-1];
+  strcpy(response,buffer);
+  char* _text;
+  char* _type;
+  _text =  strtok(response,","); // the first element returned before the ,
+  _type =  strtok(NULL,","); // the second element returned after the ,
+  
+  
+    Serial.println();
+  Serial.println("---------------"); 
+  Serial.print("text ");
+  Serial.print(_text); 
+  Serial.print(" & type ");  
+  Serial.println(_type);  
+ // parseTagInfo(_text,_type);
+ _type = 0;
+ _text = 0;
+   for(int j=0; j<i-1; j++) {
+    response[j] = 0; 
+    buffer[j]=0;
+  } 
 }
-
-boolean isProjectTag(){
-  if (strncmp(tag,"8400071D72",10)==0){
-    project ="#projectA";
-    return true;
-  }
-  else return false;  
-}
-
-
 
 
 

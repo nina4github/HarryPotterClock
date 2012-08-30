@@ -5,7 +5,7 @@
  *
  */
 #include <SoftwareSerial.h>
-#define RFID_ENABLE 7   //to RFID ENABLE
+
 #define CODE_LEN 10      //Max length of RFID tag
 #define VALIDATE_TAG 1  //should we validate tag?
 #define VALIDATE_LENGTH  200 //maximum reads b/w tag read and validate
@@ -13,8 +13,9 @@
 #define START_BYTE 0x0A 
 #define STOP_BYTE 0x0D
 /* RFID pins. */
-#define RF_RX_PIN 8
-#define RF_TX_PIN 9
+#define RFID_ENABLE 6   //to RFID ENABLE
+#define RF_RX_PIN 7  // sout pin from the rfid reader
+#define RF_TX_PIN 8
 
 char tag[CODE_LEN];  
 char* person = 0;
@@ -145,7 +146,7 @@ void disableRFID() {
  * Blocking function, waits for and gets the RFID tag.
  */
 void getRFIDTag() {
-  //Serial.println("getrfid");
+  Serial.println("getrfid");
   byte next_byte; 
   while(rfid_serial.available() <= 0) {
   }
