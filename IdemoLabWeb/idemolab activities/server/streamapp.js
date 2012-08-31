@@ -31,9 +31,16 @@ var send = require('send')
 // };
 
 var app = http.createServer( function(req,resp) {
-	send(req, url.parse(req.url).pathname)
-	  .root(__dirname + '/../')
-	  .pipe(resp);
+	
+	// this if is not working
+	if(url.parse(req.url)==='/db.html'){
+		console.log(req.url.pathname);
+	}
+	else{
+		send(req, url.parse(req.url).pathname)
+		  .root(__dirname + '/../')
+		  .pipe(resp);
+		}
 } );
 var io = sio.listen(app);
 

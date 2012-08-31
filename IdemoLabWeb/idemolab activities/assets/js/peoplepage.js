@@ -36,7 +36,7 @@ function create_people_page(timeline){
 		})[0];
 		//console.log(lasttweet);
 		//$('.box.'+person).append(populate_person_box(timeline[lasttweetindex]));
-		$('.box.'+person).append(populate_person_box(lasttweet));	
+		$('.box.'+person).append(populate_person_box(person,lasttweet));	
 	});
 }
 
@@ -60,13 +60,14 @@ function person_box(result){
 
 
 function build_person_box(person){
-	var box = '<div class="span3 person box '+person+'"><h2>'+person+'</h2></div><!--/span-->';
+	var box = '<div class="span3 person box '+person+' well"><h2>'+person+'</h2></div><!--/span-->';
 	return box;
 }
 
-function populate_person_box(result){
+function populate_person_box(person,result){
 	var username = result.user.name
-		, userimage = result.user.profile_image_url
+		//, userimage = result.user.profile_image_url
+		, userimage = "http://api.twitter.com/1/users/profile_image/"+person+".jpg"
 		, text = result.text;
 	var image_content = '<p> <a href="#" class="thumbnail span4"> <img src="'+ userimage +'" alt=""></a></p>';
 	var text_content = '<p class="span8 box-content">'+text+'</p>';
@@ -98,7 +99,7 @@ function populate_person_box(result){
 	
 	
 	var box_content = '<div class="row-fluid person_details"> '
-			//	+ image_content
+				+ image_content
 				+ text_content 
 				+ '</div><!--/row-->'
 				+ '<div class="row-fluid status_details"> ' 
@@ -111,13 +112,13 @@ function populate_person_box(result){
 }
 
 function update_people_boxes(result){
-	
+	console.log(result);
 	var people = get_people_from_results([result]);
 	$.each(people,function (key,element){
 //		$('.box.'+element+ ' p.box-content').html("UPDATE "+data.text+"</br>");
 		$('.box.'+element+' .person_details').remove();
 		$('.box.'+element+' .status_details').remove();
-		$('.box.'+element).append(populate_person_box(result));
+		$('.box.'+element).append(populate_person_box(element,result));
 
 		// animation: updated elements will blink for 3 times	
 		$('#boxes-container .'+element).blink({"maxBlinks":3});

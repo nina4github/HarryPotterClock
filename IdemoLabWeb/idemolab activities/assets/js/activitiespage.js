@@ -1,5 +1,5 @@
 function create_activities_page(timeline){
-	console.log(timeline);
+	//console.log(timeline);
 	
 	var people = get_people_from_results(timeline);
 	var peopleLatestTweet = get_people_latest_tweet(people,timeline);
@@ -15,7 +15,7 @@ function create_activities_page(timeline){
 		}
 
 		$('#boxes-container .row-fluid.boxes-row-'+Math.floor(index/columns)).append(build_activity_box(activity));	
-		console.log(activity);
+	//	console.log(activity);
 		
 		//add people whose latest tweet is in this activity
 		var activityPeople = peopleLatestTweet.filter(function (item){
@@ -31,8 +31,8 @@ function create_activities_page(timeline){
 
 function build_activity_box(activity){
 	var type = get_activity_type(activity);
-	console.log(type);
-	var box ='<div class="span4 activity box-'+type+' box '+activity+'"><h2>'+activity+'</h2></div><!--/span-->';
+	//console.log(type);
+	var box ='<div class="span4 activity box-'+type+' box '+activity+' well"><h2>'+activity+'</h2></div><!--/span-->';
 	return box;
 }
 
@@ -40,7 +40,9 @@ function populate_activity_box(activity,activityPeople){
 	
 	var person_content = '';	
 	$.each(activityPeople, function(k,v){
-		person_content += '<span class="span4">'+v.name+'</span>';
+		var userimage = "http://api.twitter.com/1/users/profile_image/"+v.name+".jpg";
+		person_content += '<p class="span4" > <a href="#" class=""> <img src="'+ userimage +'" alt=""></a>'+v.name+'</p>';
+		//person_content += '<span class="span4">'+v.name+'</span>';
 	});
 
 	var box_content = '<div class="row-fluid activity_details"> '
@@ -60,23 +62,7 @@ function get_activity_tweets(activity, timeline){
 	return tweets;
 }
 
-function get_people_latest_tweet(people,timeline){
-	var latestTweets = new Array();
-	// get latest tweet per person
-	$.each(people, function (key, value){
-		//console.log(value);
-		var lasttweet = timeline.filter(function(tweet){
-			return tweet.entities.user_mentions.filter(function (mention){
-				return mention.screen_name===value
-			}).length > 0;
-		})[0];
-		//console.log(lasttweet);
-		if(lasttweet!=undefined){		
-			latestTweets.push({"name":value,"tweet": lasttweet});
-			}
-	});
-	return latestTweets;
-}
+
 
 function get_activity_type(activity){
 	if ($.inArray(activity,danger_activities)>-1) {return "danger";}

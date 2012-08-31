@@ -121,3 +121,39 @@ function fix_rows(nRows){
 			if (children.length%nRows!=0)
 				$('#boxes-container').append('</div><!-- /row-fluid boxes-row -->');
 } 
+
+
+function pageCarousel(){
+	setInterval(function (){updatePage()},300000); // 5 minutes carousel = 300 000 millisec
+}
+
+function updatePage(){
+	var url = document.location.search;
+	var tmp = url.split("=")[1];
+	console.log(tmp)
+	var carouselIndex = $.inArray(tmp,url_carousel);
+	console.log(carouselIndex);
+	var newurl = document.location.protocol+"//"+document.location.host + 
+			document.location.pathname + "?view="+ url_carousel[(carouselIndex+1)%url_carousel.length]; 
+	console.log(newurl);
+	document.location.href = newurl;
+	//document.location.reload();
+}
+
+function get_people_latest_tweet(people,timeline){
+	var latestTweets = new Array();
+	// get latest tweet per person
+	$.each(people, function (key, value){
+		//console.log(value);
+		var lasttweet = timeline.filter(function(tweet){
+			return tweet.entities.user_mentions.filter(function (mention){
+				return mention.screen_name===value
+			}).length > 0;
+		})[0];
+		//console.log(lasttweet);
+		if(lasttweet!=undefined){		
+			latestTweets.push({"name":value,"tweet": lasttweet});
+			}
+	});
+	return latestTweets;
+}

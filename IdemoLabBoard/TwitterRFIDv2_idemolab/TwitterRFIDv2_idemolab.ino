@@ -111,7 +111,7 @@ setup()
   pinMode(RF_RX_PIN, INPUT);
   pinMode(RF_TX_PIN, OUTPUT);
 
-  rfid_serial.begin(2400);  
+  rfid_serial.begin(2400);  w
 
 
 #if 1
