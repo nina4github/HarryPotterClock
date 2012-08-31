@@ -43,7 +43,7 @@
 /* Local network configuration. */
 uint8_t mac[6] =     {
   //  0x90, 0xA2, 0xDA, 0x00, 0x00, 0xA0};
-  0x90, 0xA2, 0xDA, 0x0D, 0x6E, 0x85};
+  0x90, 0xA2, 0xDA, 0x0D, 0x6E, 0x85}; // ethernet board
 
 /* 
  * The "IPAddress dns" parameter parameter gives me a compilation error 
@@ -101,8 +101,8 @@ SoftwareSerial rfid_serial = SoftwareSerial(RF_RX_PIN, RF_TX_PIN);
 
 EthernetClient client;
 //IPAddress server(192,168,0,175); // change to PRODUCTION SERVER (mac mini of the lab) on idemolab network
-IPAddress server(192,168,0,175); // TEST SERVER IP elna mac book pro through CABLE on TAGTEC router 
-
+//IPAddress server(192,168,0,175); // TEST SERVER IP elna mac book pro through CABLE on TAGTEC router 
+IPAddress server(169,254,38,140); // MacMini SERVER IP macmini through CABLE but connected to idemolab wifi network
 
 
 char actor[10];
@@ -128,7 +128,7 @@ setup()
   if (Ethernet.begin(mac))
   {
     Serial.println("DHCP: OK");
-    //Ethernet.localIP().printTo(Serial);
+    Ethernet.localIP().printTo(Serial);
     Serial.println("");
   }
   else

@@ -51,7 +51,7 @@ uint8_t mac[6] =     {
  */
 //IPAddress dns(192, 168, 0, 195); 
 
-IPAddress ip(192, 168, 0, 100);
+IPAddress ip(192, 168, 0, 100); // in tagtec but in any case it takes from dhcp
 IPAddress gateway(192, 168, 0, 1);
 IPAddress subnet(255, 255, 255, 0);
 
@@ -101,7 +101,9 @@ SoftwareSerial rfid_serial = SoftwareSerial(RF_RX_PIN, RF_TX_PIN);
 
 EthernetClient client;
 //IPAddress server(192,168,0,175); // change to PRODUCTION SERVER (mac mini of the lab) on idemolab network
-IPAddress server(192,168,0,175); // TEST SERVER IP elna mac book pro through CABLE on TAGTEC router 
+//IPAddress server(192,168,0,175); // TEST SERVER IP elna mac book pro through CABLE on TAGTEC router 
+IPAddress server(169,254,38,140); // MacMini SERVER IP macmini through CABLE but connected to idemolab wifi network
+
 
 
 
