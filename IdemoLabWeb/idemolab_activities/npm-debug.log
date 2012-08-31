@@ -1,0 +1,281 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'express' ]
+2 info using npm@1.1.48
+3 info using node@v0.8.6
+4 verbose config file /Users/elenanazzi/.npmrc
+5 verbose config file /usr/local/etc/npmrc
+6 verbose config file /usr/local/lib/node_modules/npm/npmrc
+7 verbose read json /usr/local/lib/package.json
+8 verbose read json /usr/local/lib/package.json
+9 verbose cache add [ 'express', null ]
+10 silly cache add name=undefined spec="express" args=["express",null]
+11 verbose parsed url { pathname: 'express', path: 'express', href: 'express' }
+12 silly lockFile f3c62de4-express express
+13 verbose lock express /Users/elenanazzi/.npm/f3c62de4-express.lock
+14 silly lockFile f3c62de4-express express
+15 verbose addNamed [ 'express', '' ]
+16 verbose addNamed [ null, '' ]
+17 silly lockFile 64a534c1-express express@
+18 verbose lock express@ /Users/elenanazzi/.npm/64a534c1-express.lock
+19 silly addNameRange { name: 'express', range: '', hasData: false }
+20 verbose url raw express
+21 verbose url resolving [ 'https://registry.npmjs.org/', './express' ]
+22 verbose url resolved https://registry.npmjs.org/express
+23 info retry registry request attempt 1 at 22:45:31
+24 http GET https://registry.npmjs.org/express
+25 http 200 https://registry.npmjs.org/express
+26 silly registry.get cb [ 200,
+26 silly registry.get   { vary: 'Accept',
+26 silly registry.get     server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+26 silly registry.get     etag: '"7OAO49G6HR5D3S2VX9A334K4T"',
+26 silly registry.get     date: 'Sun, 12 Aug 2012 20:45:22 GMT',
+26 silly registry.get     'content-type': 'application/json',
+26 silly registry.get     'content-length': '185397' } ]
+27 silly addNameRange number 2 { name: 'express', range: '', hasData: true }
+28 silly addNameRange versions [ 'express',
+28 silly addNameRange   [ '0.14.0',
+28 silly addNameRange     '0.14.1',
+28 silly addNameRange     '1.0.0beta',
+28 silly addNameRange     '1.0.0beta2',
+28 silly addNameRange     '1.0.0rc',
+28 silly addNameRange     '1.0.0rc2',
+28 silly addNameRange     '1.0.0rc3',
+28 silly addNameRange     '1.0.0rc4',
+28 silly addNameRange     '1.0.0',
+28 silly addNameRange     '1.0.1',
+28 silly addNameRange     '1.0.2',
+28 silly addNameRange     '1.0.3',
+28 silly addNameRange     '1.0.4',
+28 silly addNameRange     '1.0.5',
+28 silly addNameRange     '1.0.6',
+28 silly addNameRange     '1.0.7',
+28 silly addNameRange     '2.0.0beta',
+28 silly addNameRange     '1.0.8',
+28 silly addNameRange     '2.0.0beta2',
+28 silly addNameRange     '2.0.0beta3',
+28 silly addNameRange     '2.0.0rc',
+28 silly addNameRange     '2.0.0rc2',
+28 silly addNameRange     '2.0.0rc3',
+28 silly addNameRange     '2.0.0',
+28 silly addNameRange     '2.1.0',
+28 silly addNameRange     '2.1.1',
+28 silly addNameRange     '2.2.0',
+28 silly addNameRange     '2.2.1',
+28 silly addNameRange     '2.2.2',
+28 silly addNameRange     '2.3.0',
+28 silly addNameRange     '2.3.1',
+28 silly addNameRange     '2.3.2',
+28 silly addNameRange     '2.3.3',
+28 silly addNameRange     '2.3.4',
+28 silly addNameRange     '2.3.5',
+28 silly addNameRange     '2.3.6',
+28 silly addNameRange     '2.3.7',
+28 silly addNameRange     '2.3.8',
+28 silly addNameRange     '2.3.9',
+28 silly addNameRange     '2.3.10',
+28 silly addNameRange     '2.3.11',
+28 silly addNameRange     '2.3.12',
+28 silly addNameRange     '2.4.0',
+28 silly addNameRange     '2.4.1',
+28 silly addNameRange     '2.4.2',
+28 silly addNameRange     '2.4.3',
+28 silly addNameRange     '2.4.4',
+28 silly addNameRange     '2.4.5',
+28 silly addNameRange     '2.4.6',
+28 silly addNameRange     '2.4.7',
+28 silly addNameRange     '2.5.0',
+28 silly addNameRange     '2.5.1',
+28 silly addNameRange     '2.5.2',
+28 silly addNameRange     '2.5.3',
+28 silly addNameRange     '2.5.4',
+28 silly addNameRange     '2.5.5',
+28 silly addNameRange     '2.5.6',
+28 silly addNameRange     '2.5.7',
+28 silly addNameRange     '2.5.8',
+28 silly addNameRange     '2.5.9',
+28 silly addNameRange     '3.0.0alpha1',
+28 silly addNameRange     '3.0.0alpha2',
+28 silly addNameRange     '3.0.0alpha3',
+28 silly addNameRange     '3.0.0alpha4',
+28 silly addNameRange     '3.0.0alpha5',
+28 silly addNameRange     '3.0.0beta1',
+28 silly addNameRange     '3.0.0beta2',
+28 silly addNameRange     '3.0.0beta3',
+28 silly addNameRange     '2.5.10',
+28 silly addNameRange     '3.0.0beta4',
+28 silly addNameRange     '2.5.11',
+28 silly addNameRange     '3.0.0beta6',
+28 silly addNameRange     '3.0.0beta7',
+28 silly addNameRange     '3.0.0rc1',
+28 silly addNameRange     '3.0.0rc2' ] ]
+29 verbose addNamed [ 'express', '3.0.0rc2' ]
+30 verbose addNamed [ '3.0.0rc2', '3.0.0rc2' ]
+31 silly lockFile 850ebda7-express-3-0-0rc2 express@3.0.0rc2
+32 verbose lock express@3.0.0rc2 /Users/elenanazzi/.npm/850ebda7-express-3-0-0rc2.lock
+33 silly lockFile 107308d4-org-express-express-3-0-0rc2-tgz https://registry.npmjs.org/express/-/express-3.0.0rc2.tgz
+34 verbose lock https://registry.npmjs.org/express/-/express-3.0.0rc2.tgz /Users/elenanazzi/.npm/107308d4-org-express-express-3-0-0rc2-tgz.lock
+35 verbose addRemoteTarball [ 'https://registry.npmjs.org/express/-/express-3.0.0rc2.tgz',
+35 verbose addRemoteTarball   'ffa79ccee41abc97f2c57576cc433339200fcd33' ]
+36 info retry fetch attempt 1 at 22:45:37
+37 verbose fetch to= /var/folders/oE/oEtLn+y-FWKp0-hPKzz6Tk+++TM/-Tmp-/npm-52734/1344804337677-0.8448447892442346/tmp.tgz
+38 http GET https://registry.npmjs.org/express/-/express-3.0.0rc2.tgz
+39 http 200 https://registry.npmjs.org/express/-/express-3.0.0rc2.tgz
+40 silly shasum updated bytes 33947
+41 info shasum ffa79ccee41abc97f2c57576cc433339200fcd33
+41 info shasum /var/folders/oE/oEtLn+y-FWKp0-hPKzz6Tk+++TM/-Tmp-/npm-52734/1344804337677-0.8448447892442346/tmp.tgz
+42 verbose tar unpack /var/folders/oE/oEtLn+y-FWKp0-hPKzz6Tk+++TM/-Tmp-/npm-52734/1344804337677-0.8448447892442346/tmp.tgz
+43 silly lockFile b3055cfb-37677-0-8448447892442346-package /var/folders/oE/oEtLn+y-FWKp0-hPKzz6Tk+++TM/-Tmp-/npm-52734/1344804337677-0.8448447892442346/package
+44 verbose lock /var/folders/oE/oEtLn+y-FWKp0-hPKzz6Tk+++TM/-Tmp-/npm-52734/1344804337677-0.8448447892442346/package /Users/elenanazzi/.npm/b3055cfb-37677-0-8448447892442346-package.lock
+45 silly gunzTarPerm modes [ '755', '644' ]
+46 silly gunzTarPerm extractEntry package.json
+47 silly gunzTarPerm extractEntry .npmignore
+48 silly gunzTarPerm extractEntry LICENSE
+49 silly gunzTarPerm extractEntry client.js
+50 silly gunzTarPerm extractEntry index.js
+51 silly gunzTarPerm extractEntry test.js
+52 silly gunzTarPerm extractEntry .travis.yml
+53 silly gunzTarPerm extractEntry History.md
+54 silly gunzTarPerm extractEntry Makefile
+55 silly gunzTarPerm extractEntry bin/express
+56 silly gunzTarPerm extractEntry Readme.md
+57 silly gunzTarPerm extractEntry lib/application.js
+58 silly gunzTarPerm extractEntry lib/express.js
+59 silly gunzTarPerm extractEntry lib/middleware.js
+60 silly gunzTarPerm extractEntry lib/request.js
+61 silly gunzTarPerm extractEntry lib/response.js
+62 silly gunzTarPerm extractEntry lib/utils.js
+63 silly gunzTarPerm extractEntry lib/view.js
+64 silly gunzTarPerm extractEntry lib/router/index.js
+65 silly gunzTarPerm extractEntry lib/router/route.js
+66 verbose read json /var/folders/oE/oEtLn+y-FWKp0-hPKzz6Tk+++TM/-Tmp-/npm-52734/1344804337677-0.8448447892442346/package/package.json
+67 silly lockFile b3055cfb-37677-0-8448447892442346-package /var/folders/oE/oEtLn+y-FWKp0-hPKzz6Tk+++TM/-Tmp-/npm-52734/1344804337677-0.8448447892442346/package
+68 verbose from cache /var/folders/oE/oEtLn+y-FWKp0-hPKzz6Tk+++TM/-Tmp-/npm-52734/1344804337677-0.8448447892442346/package/package.json
+69 verbose tar pack [ '/Users/elenanazzi/.npm/express/3.0.0rc2/package.tgz',
+69 verbose tar pack   '/var/folders/oE/oEtLn+y-FWKp0-hPKzz6Tk+++TM/-Tmp-/npm-52734/1344804337677-0.8448447892442346/package' ]
+70 verbose tarball /Users/elenanazzi/.npm/express/3.0.0rc2/package.tgz
+71 verbose folder /var/folders/oE/oEtLn+y-FWKp0-hPKzz6Tk+++TM/-Tmp-/npm-52734/1344804337677-0.8448447892442346/package
+72 silly lockFile 78ca63ff-npm-express-3-0-0rc2-package-tgz /Users/elenanazzi/.npm/express/3.0.0rc2/package.tgz
+73 verbose lock /Users/elenanazzi/.npm/express/3.0.0rc2/package.tgz /Users/elenanazzi/.npm/78ca63ff-npm-express-3-0-0rc2-package-tgz.lock
+74 silly lockFile 78ca63ff-npm-express-3-0-0rc2-package-tgz /Users/elenanazzi/.npm/express/3.0.0rc2/package.tgz
+75 silly lockFile afd2cbbf-zzi-npm-express-3-0-0rc2-package /Users/elenanazzi/.npm/express/3.0.0rc2/package
+76 verbose lock /Users/elenanazzi/.npm/express/3.0.0rc2/package /Users/elenanazzi/.npm/afd2cbbf-zzi-npm-express-3-0-0rc2-package.lock
+77 silly lockFile afd2cbbf-zzi-npm-express-3-0-0rc2-package /Users/elenanazzi/.npm/express/3.0.0rc2/package
+78 verbose tar unpack /Users/elenanazzi/.npm/express/3.0.0rc2/package.tgz
+79 silly lockFile afd2cbbf-zzi-npm-express-3-0-0rc2-package /Users/elenanazzi/.npm/express/3.0.0rc2/package
+80 verbose lock /Users/elenanazzi/.npm/express/3.0.0rc2/package /Users/elenanazzi/.npm/afd2cbbf-zzi-npm-express-3-0-0rc2-package.lock
+81 silly gunzTarPerm modes [ '755', '644' ]
+82 silly gunzTarPerm extractEntry package.json
+83 silly gunzTarPerm extractEntry .npmignore
+84 silly gunzTarPerm extractEntry LICENSE
+85 silly gunzTarPerm extractEntry client.js
+86 silly gunzTarPerm extractEntry index.js
+87 silly gunzTarPerm extractEntry test.js
+88 silly gunzTarPerm extractEntry .travis.yml
+89 silly gunzTarPerm extractEntry History.md
+90 silly gunzTarPerm extractEntry Makefile
+91 silly gunzTarPerm extractEntry bin/express
+92 silly gunzTarPerm extractEntry Readme.md
+93 silly gunzTarPerm extractEntry lib/application.js
+94 silly gunzTarPerm extractEntry lib/express.js
+95 silly gunzTarPerm extractEntry lib/middleware.js
+96 silly gunzTarPerm extractEntry lib/request.js
+97 silly gunzTarPerm extractEntry lib/response.js
+98 silly gunzTarPerm extractEntry lib/utils.js
+99 silly gunzTarPerm extractEntry lib/view.js
+100 silly gunzTarPerm extractEntry lib/router/index.js
+101 silly gunzTarPerm extractEntry lib/router/route.js
+102 verbose read json /Users/elenanazzi/.npm/express/3.0.0rc2/package/package.json
+103 silly lockFile afd2cbbf-zzi-npm-express-3-0-0rc2-package /Users/elenanazzi/.npm/express/3.0.0rc2/package
+104 silly shasum updated bytes 33946
+105 info shasum 34d4269c7939be835d0404ff9c34ebc7ad161258
+105 info shasum /Users/elenanazzi/.npm/express/3.0.0rc2/package.tgz
+106 verbose from cache /Users/elenanazzi/.npm/express/3.0.0rc2/package/package.json
+107 verbose chmod /Users/elenanazzi/.npm/express/3.0.0rc2/package.tgz 644
+108 verbose chown /Users/elenanazzi/.npm/express/3.0.0rc2/package.tgz [ 502, 20 ]
+109 silly lockFile 107308d4-org-express-express-3-0-0rc2-tgz https://registry.npmjs.org/express/-/express-3.0.0rc2.tgz
+110 silly lockFile 850ebda7-express-3-0-0rc2 express@3.0.0rc2
+111 silly lockFile 64a534c1-express express@
+112 silly resolved [ { name: 'express',
+112 silly resolved     description: 'Sinatra inspired web development framework',
+112 silly resolved     version: '3.0.0rc2',
+112 silly resolved     author: { name: 'TJ Holowaychuk', email: 'tj@vision-media.ca' },
+112 silly resolved     contributors: [ [Object], [Object], [Object], [Object] ],
+112 silly resolved     dependencies:
+112 silly resolved      { connect: '2.4.2',
+112 silly resolved        commander: '0.6.1',
+112 silly resolved        'range-parser': '0.0.4',
+112 silly resolved        mkdirp: '0.3.3',
+112 silly resolved        cookie: '0.0.4',
+112 silly resolved        crc: '0.2.0',
+112 silly resolved        fresh: '0.1.0',
+112 silly resolved        methods: '0.0.1',
+112 silly resolved        send: '0.0.3',
+112 silly resolved        debug: '*' },
+112 silly resolved     devDependencies:
+112 silly resolved      { ejs: '*',
+112 silly resolved        mocha: '*',
+112 silly resolved        jade: '*',
+112 silly resolved        hjs: '*',
+112 silly resolved        stylus: '*',
+112 silly resolved        should: '*',
+112 silly resolved        'connect-redis': '*',
+112 silly resolved        'github-flavored-markdown': '*',
+112 silly resolved        supertest: '0.0.1' },
+112 silly resolved     keywords:
+112 silly resolved      [ 'express',
+112 silly resolved        'framework',
+112 silly resolved        'sinatra',
+112 silly resolved        'web',
+112 silly resolved        'rest',
+112 silly resolved        'restful',
+112 silly resolved        'router',
+112 silly resolved        'app',
+112 silly resolved        'api' ],
+112 silly resolved     publishConfig: { tag: '3.0' },
+112 silly resolved     repository: { type: 'git', url: 'git://github.com/visionmedia/express' },
+112 silly resolved     main: 'index',
+112 silly resolved     bin: { express: './bin/express' },
+112 silly resolved     scripts: { prepublish: 'npm prune', test: 'make test' },
+112 silly resolved     engines: { node: '*' },
+112 silly resolved     readme: '\n![express logo](http://f.cl.ly/items/0V2S1n0K1i3y1c122g04/Screen%20Shot%202012-04-11%20at%209.59.42%20AM.png)\n\n  Fast, unopinionated, minimalist web framework for [node](http://nodejs.org). [![Build Status](https://secure.travis-ci.org/visionmedia/express.png)](http://travis-ci.org/visionmedia/express)\n\n```js\nvar express = require(\'express\');\nvar app = express();\n\napp.get(\'/\', function(req, res){\n  res.send(\'Hello World\');\n});\n\napp.listen(3000);\n```\n\n## Installation\n\n    $ npm install -g express\n\n To install the 3.0 alpha:\n \n    $ npm install -g express@3.0\n\n## Quick Start\n\n The quickest way to get started with express is to utilize the executable `express(1)` to generate an application as shown below:\n\n Create the app:\n\n    $ npm install -g express\n    $ express /tmp/foo && cd /tmp/foo\n\n Install dependencies:\n\n    $ npm install\n\n Start the server:\n\n    $ node app\n\n## Features\n\n  * Built on [Connect](http://github.com/senchalabs/connect)\n  * Robust routing\n  * HTTP helpers (redirection, caching, etc)\n  * View system supporting 14+ template engines\n  * Content negotiation\n  * Focus on high performance\n  * Environment based configuration\n  * Executable for generating applications quickly\n  * High test coverage\n\n## Philosophy\n\n  The Express philosophy is to provide small, robust tooling for HTTP servers. Making\n  it a great solution for single page applications, web sites, hybrids, or public\n  HTTP APIs.\n  \n  Built on Connect you can use _only_ what you need, and nothing more, applications\n  can be as big or as small as you like, even a single file. Express does\n  not force you to use any specific ORM or template engine. With support for over\n  14 template engines via [Consolidate.js](http://github.com/visionmedia/consolidate.js)\n  you can quickly craft your perfect framework.\n\n## More Information\n\n  * Join #express on freenode\n  * [Google Group](http://groups.google.com/group/express-js) for discussion\n  * Follow [tjholowaychuk](http://twitter.com/tjholowaychuk) on twitter for updates\n  * Visit the [Wiki](http://github.com/visionmedia/express/wiki)\n  * [日本語ドキュメンテーション](http://hideyukisaito.com/doc/expressjs/) by [hideyukisaito](https://github.com/hideyukisaito)\n  * [Русскоязычная документация](http://express-js.ru/)\n\n## Viewing Examples\n\nFirst install the dev dependencies to install all the example / test suite deps:\n\n    $ cd express\n    $ npm install\n\nthen run whichever tests you want:\n\n    $ node examples/content-negotiation\n\n## Running Tests\n\nTo run the test suite first invoke the following command within the repo, installing the development dependencies:\n\n    $ npm install\n\nthen run the tests:\n\n    $ make test\n\n## Contributors\n\n```\nproject: express\ncommits: 3559\nactive : 468 days\nfiles  : 237\nauthors: \n 1891\tTj Holowaychuk          53.1%\n 1285\tvisionmedia             36.1%\n  182\tTJ Holowaychuk          5.1%\n   54\tAaron Heckmann          1.5%\n   34\tcsausdev                1.0%\n   26\tciaranj                 0.7%\n   21\tRobert Sköld          0.6%\n    6\tGuillermo Rauch         0.2%\n    3\tDav Glass               0.1%\n    3\tNick Poulden            0.1%\n    2\tRandy Merrill           0.1%\n    2\tBenny Wong              0.1%\n    2\tHunter Loftis           0.1%\n    2\tJake Gordon             0.1%\n    2\tBrian McKinney          0.1%\n    2\tRoman Shtylman          0.1%\n    2\tBen Weaver              0.1%\n    2\tDave Hoover             0.1%\n    2\tEivind Fjeldstad        0.1%\n    2\tDaniel Shaw             0.1%\n    1\tMatt Colyer             0.0%\n    1\tPau Ramon               0.0%\n    1\tPero Pejovic            0.0%\n    1\tPeter Rekdal Sunde      0.0%\n    1\tRaynos                  0.0%\n    1\tTeng Siong Ong          0.0%\n    1\tViktor Kelemen          0.0%\n    1\tctide                   0.0%\n    1\t8bitDesigner            0.0%\n    1\tisaacs                  0.0%\n    1\tmgutz                   0.0%\n    1\tpikeas                  0.0%\n    1\tshuwatto                0.0%\n    1\ttstrimple               0.0%\n    1\tewoudj                  0.0%\n    1\tAdam Sanderson          0.0%\n    1\tAndrii Kostenko         0.0%\n    1\tAndy Hiew               0.0%\n    1\tArpad Borsos            0.0%\n    1\tAshwin Purohit          0.0%\n    1\tBenjen                  0.0%\n    1\tDarren Torpey           0.0%\n    1\tGreg Ritter             0.0%\n    1\tGregory Ritter          0.0%\n    1\tJames Herdman           0.0%\n    1\tJim Snodgrass           0.0%\n    1\tJoe McCann              0.0%\n    1\tJonathan Dumaine        0.0%\n    1\tJonathan Palardy        0.0%\n    1\tJonathan Zacsh          0.0%\n    1\tJustin Lilly            0.0%\n    1\tKen Sato                0.0%\n    1\tMaciej Małecki         0.0%\n    1\tMasahiro Hayashi        0.0%\n```\n\n## License \n\n(The MIT License)\n\nCopyright (c) 2009-2012 TJ Holowaychuk &lt;tj@vision-media.ca&gt;\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n\'Software\'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \'AS IS\', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n',
+112 silly resolved     _id: 'express@3.0.0rc2',
+112 silly resolved     dist: { shasum: '34d4269c7939be835d0404ff9c34ebc7ad161258' },
+112 silly resolved     _from: 'express' } ]
+113 info install express@3.0.0rc2 into /usr/local/lib
+114 info installOne express@3.0.0rc2
+115 verbose from cache /Users/elenanazzi/.npm/express/3.0.0rc2/package/package.json
+116 info /usr/local/lib/node_modules/express unbuild
+117 verbose read json /usr/local/lib/node_modules/express/package.json
+118 verbose tar unpack /Users/elenanazzi/.npm/express/3.0.0rc2/package.tgz
+119 silly lockFile 59b5b716-r-local-lib-node-modules-express /usr/local/lib/node_modules/express
+120 verbose lock /usr/local/lib/node_modules/express /Users/elenanazzi/.npm/59b5b716-r-local-lib-node-modules-express.lock
+121 silly gunzTarPerm modes [ '755', '644' ]
+122 error Error: EACCES, mkdir '/usr/local/lib/node_modules/express'
+122 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/express']
+122 error   errno: 3,
+122 error   code: 'EACCES',
+122 error   path: '/usr/local/lib/node_modules/express',
+122 error   fstream_type: 'Directory',
+122 error   fstream_path: '/usr/local/lib/node_modules/express',
+122 error   fstream_class: 'DirWriter',
+122 error   fstream_stack:
+122 error    [ 'DirWriter._create (/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23)',
+122 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:51:17',
+122 error      'Object.oncomplete (fs.js:297:15)' ] }
+123 error Please try running this command again as root/Administrator.
+124 error System Darwin 10.8.0
+125 error command "node" "/usr/local/bin/npm" "install" "-g" "express"
+126 error cwd /Developer/ninaIdemoLab/nodejsworkspace/idemolab activities
+127 error node -v v0.8.6
+128 error npm -v 1.1.48
+129 error path /usr/local/lib/node_modules/express
+130 error fstream_path /usr/local/lib/node_modules/express
+131 error fstream_type Directory
+132 error fstream_class DirWriter
+133 error code EACCES
+134 error errno 3
+135 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/express'
+136 error fstream_stack DirWriter._create (/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23)
+136 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:51:17
+136 error fstream_stack Object.oncomplete (fs.js:297:15)
+137 verbose exit [ 3, true ]
