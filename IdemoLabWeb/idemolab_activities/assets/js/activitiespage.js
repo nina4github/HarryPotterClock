@@ -70,3 +70,4 @@ function get_activity_type(activity){
 	else if ($.inArray(activity,success_activities)>-1) {return "success";}
 	else return "info";
 }
+

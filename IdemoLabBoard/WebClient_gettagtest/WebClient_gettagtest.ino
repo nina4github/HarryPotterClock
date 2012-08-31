@@ -22,8 +22,9 @@ byte mac[] = {
  // 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
    0x90, 0xA2, 0xDA, 0x0D, 0x6E, 0x85}; // arduino board ethernet
 
-IPAddress server(192,168,0,175); // elna mac book pro on CABLE
-
+//IPAddress server(192,168,0,175); // elna mac book pro on CABLE
+//IPAddress server(192,168,2,208); // elna mac book pro on idemolab wifi
+IPAddress server(169,254,203,130); // elna mac book pro on idemolab wifi
 // Initialize the Ethernet client library
 // with the IP address and port of the server 
 // that you want to connect to (port 80 is default for HTTP):
@@ -42,6 +43,10 @@ void setup() {
     // no point in carrying on, so do nothing forevermore:
     for(;;)
       ;
+  }else{
+     Serial.println("DHCP: OK");
+    Ethernet.localIP().printTo(Serial);
+    Serial.println("");
   }
   // give the Ethernet shield a second to initialize:
   delay(1000);

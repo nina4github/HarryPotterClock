@@ -75,3 +75,13 @@
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#5bc0de', endColorstr='#2f96b4', GradientType=0);
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
+
+
+
+.navbar-inner .container-fluid{
+background-color:rgba(210,0,50,.9);	
+}
+
+.navbar-inner .container-fluid .active a{
+background-color:rgba(210,0,50,.9);	
+}
