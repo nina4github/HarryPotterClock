@@ -53,7 +53,6 @@ function get_latest_tweet_per_person(person, people_timeline, timeline){
 function person_box(result){
 	var username = result.user.name
 		, userimage = result.user.profile_image_url;
-	//var userimage = "img/userimage.jpg";
 
 	var box = '<div class="span3 person box"><h2>'+username+'</h2><div class="row-fluid"> <p> <a href="#" class="thumbnail span4"> <img src="'+ userimage +'" alt="">     </a></p>          <p class="span8">'+text+'</p> </div><!--/row-->          <p><a class="btn" href="#">Project x</a><a class="btn" href="#">Project y</a></p> </div><!--/span-->';
 	return box;

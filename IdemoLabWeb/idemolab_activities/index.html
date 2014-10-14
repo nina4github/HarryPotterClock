@@ -7,26 +7,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    
-
-
     <!-- Le styles -->
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
     <link href="../assets/css/idemostyle.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-
-      }
-
-	#robin{
-		height:200px;
-	}
-    </style>
+    
     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -34,12 +18,12 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <!-- Le fav and touch icons -->
+    <!-- Le fav and touch icons 
     <link rel="shortcut icon" href="../assets/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
   </head>
 
   <body>
@@ -52,14 +36,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">activities@IdemoLab</a>
+          <a class="brand" href="index.html">activities@IdemoLab</a>
           <div class="btn-group pull-right">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
               <i class="icon-user"></i> IdemoLab
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#">About</a></li>
+              <li><a href="?view=about">About</a></li>
 	<!--      <li class="divider"></li>
               <li><a href="#">Sign Out</a></li> -->
             </ul>
@@ -77,10 +61,10 @@
 
     <div class="container-fluid">
 		<div class="row-fluid">
-			<div class="span2 well">
+			<aside class="span2 well">
 				<p>here goes some text describing the page</p>
 				
-	           </div><!--/well-->
+	        </aside><!--/well-->
 	
 			<div class="span10" id="boxes-container">
 				<!-- here go the boxes templates injected through js-->
@@ -98,7 +82,7 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/jquery/jquery.js"></script>
     <script src="../assets/js/bootstrap-transition.js"></script>
     <script src="../assets/js/bootstrap-alert.js"></script>
     <script src="../assets/js/bootstrap-modal.js"></script>
@@ -116,12 +100,13 @@
 
 	<!-- additional javascript-->
 	<script src="/socket.io/socket.io.js"></script>
-	<script src="/assets/js/templates.js"></script>
-	<script src="/assets/js/configuration.js"></script>
-	<script src="/assets/js/peoplepage.js"></script>
-	<script src="/assets/js/activitiespage.js"></script>
-	<script src="/assets/js/projectspage.js"></script>
-	<script src="/assets/js/jquery.blink.js"></script>
+	<script src="/assets/js/idemolab/templates.js"></script>
+	<script src="/assets/js/idemolab/configuration.js"></script>
+	<script src="/assets/js/idemolab/peoplepage.js"></script>
+	<script src="/assets/js/idemolab/activitiespage.js"></script>
+	<script src="/assets/js/idemolab/projectspage.js"></script>
+
+	<script src="/assets/js/jquery/jquery.blink.js"></script>
 	<script src="http://platform.twitter.com/anywhere.js?id=XqEWPKcib9LYeV0BoHfCrA&v=1" type="text/javascript"></script>
 	<script type = "text/javascript">
 	$(document).ready(function()
@@ -153,6 +138,7 @@
 			
 			/* ** SOCKET CONNECTIONS on twitter and twitter-stream ** */
 			var socket = io.connect('http://localhost:8000');
+			
 	  	//	var socket = io.connect('http://192.168.2.249:8000'); // mac mini on idemolab wifi
 	  		
 			// when a new result is sent from the stream update the corresponding box
@@ -170,29 +156,39 @@
 				// load a different template depending on the tab you are in 
 				if(window.location.search=="?view=people"){
 					// clean boxes container
-					$("#boxes-container").html("");
+					$("#boxes-container").html("people");
+
+					$("aside p").html(descr.people);
 					create_people_page(timeline);
-						pageCarousel();
+					
 				}
 				else if(window.location.search=="?view=activities"){
 					$("#boxes-container").html("activities");
+					$("aside p").html(descr.activities);
 					create_activities_page(timeline);
-						pageCarousel();
+					
 				}
 				else if(window.location.search=="?view=projects"){
 					$("#boxes-container").html("projects");
+					$("aside p").html(descr.projects);
 					create_projects_page(timeline);
-						pageCarousel();
+					
+				}
+				else if(window.location.search=="?view=about"){
+					$("#boxes-container").html("this should be the about page");
+					$("aside p").html(descr.about);
 				}
 				else{	
-					$("#boxes-container").html("ciao mamma");
-					console.log("mydebug",timeline);
+					$("#boxes-container").html("");
+					//console.log("mydebug",timeline);
+					$("aside p").html(descr.people);
 					create_people_page(timeline);
-					pageCarousel();
+					
 				}
 			//	twttr.anywhere(function(twitter) {
 			//			twitter(".box").linkifyUsers();
 			//			});
+				pageCarousel();
 	  		});
 			
 		

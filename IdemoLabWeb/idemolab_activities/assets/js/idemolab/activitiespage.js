@@ -41,10 +41,14 @@ function populate_activity_box(activity,activityPeople){
 	var person_content = '';	
 	$.each(activityPeople, function(k,v){
 		var userimage = "http://api.twitter.com/1/users/profile_image/"+v.name+".jpg";
-		person_content += '<p class="span4" > <a href="#" class=""> <img src="'+ userimage +'" alt=""></a>'+v.name+'</p>';
+		var userimage = "../assets/img/userimage.png";
+		
+		person_content += '<p class="span6"><a href="#" class="thumbnail span4"> <img src="'+ userimage +'" alt=""></a><span class="span8">'+v.name+'</span></p>';
 		//person_content += '<span class="span4">'+v.name+'</span>';
 	});
+	
 
+	
 	var box_content = '<div class="row-fluid activity_details"> '
 					+	person_content
 					+'</div><!--/row-->';

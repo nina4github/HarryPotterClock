@@ -12,3 +12,9 @@ var all_projects = ["projectA","project_X","project_Y","project_XX","HarryPotter
 	, info_projects = ["project_Y"];
 	
 var url_carousel = ["people","activities","projects"];
+
+
+var descr = {people:"This page visualizes the last activity update of each member of the lab",
+activities:"This page visualizes the members of the lab busy in a specific activity",
+projects:"This page visualizes the members of the lab busy in a specific project",
+about:"This page is the ABOUT"};
