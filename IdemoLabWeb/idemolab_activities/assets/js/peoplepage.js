@@ -53,7 +53,8 @@ function get_latest_tweet_per_person(person, people_timeline, timeline){
 function person_box(result){
 	var username = result.user.name
 		, userimage = result.user.profile_image_url;
-	
+	//var userimage = "img/userimage.jpg";
+
 	var box = '<div class="span3 person box"><h2>'+username+'</h2><div class="row-fluid"> <p> <a href="#" class="thumbnail span4"> <img src="'+ userimage +'" alt="">     </a></p>          <p class="span8">'+text+'</p> </div><!--/row-->          <p><a class="btn" href="#">Project x</a><a class="btn" href="#">Project y</a></p> </div><!--/span-->';
 	return box;
 }
@@ -69,13 +70,14 @@ function populate_person_box(person,result){
 		//, userimage = result.user.profile_image_url
 		, userimage = "http://api.twitter.com/1/users/profile_image/"+person+".jpg"
 		, text = result.text;
+	var userimage = "../assets/img/userimage.png";	
 	var image_content = '<p> <a href="#" class="thumbnail span4"> <img src="'+ userimage +'" alt=""></a></p>';
-	var text_content = '<p class="span8 box-content">'+text+'</p>';
- 	
+	
 	var act_messages = ''
 		, prj_messages = '';
 
-	
+	var text_content = '<p class="box-content">'+text+'</p>';
+ 	
 	
 	
 	$.each(result.entities.hashtags,function(key,value){
@@ -100,10 +102,11 @@ function populate_person_box(person,result){
 	
 	var box_content = '<div class="row-fluid person_details"> '
 				+ image_content
-				+ text_content 
+				+ act_messages
+				 
 				+ '</div><!--/row-->'
 				+ '<div class="row-fluid status_details"> ' 
-				+ act_messages
+				+ text_content
 				+ prj_messages
 				+'</div><!--/row-->';
 
@@ -115,6 +118,7 @@ function update_people_boxes(result){
 	console.log(result);
 	var people = get_people_from_results([result]);
 	$.each(people,function (key,element){
+
 //		$('.box.'+element+ ' p.box-content').html("UPDATE "+data.text+"</br>");
 		$('.box.'+element+' .person_details').remove();
 		$('.box.'+element+' .status_details').remove();

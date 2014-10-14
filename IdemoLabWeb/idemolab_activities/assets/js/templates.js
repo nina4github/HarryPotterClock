@@ -3,6 +3,7 @@ function box(result){
 		, userimage = result.user.profile_image_url
 		, text = result.text;
 	
+	
 	var box = '<div class="span3 person box"><h2>'+username+'</h2><div class="row-fluid"> <p> <a href="#" class="thumbnail span4"> <img src="'+ userimage +'" alt="">     </a></p>          <p class="span8">'+text+'</p> </div><!--/row-->          <p><a class="btn" href="#">Project x</a><a class="btn" href="#">Project y</a></p> </div><!--/span-->';
 	return box;
 }
@@ -40,7 +41,7 @@ function get_people_from_results(timeline){
 			}
 		}
 	}
-//	console.log(people);
+	console.log(people);
 	return people;
 }
 

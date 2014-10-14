@@ -79,10 +79,7 @@
 		<div class="row-fluid">
 			<div class="span2 well">
 				<p>here goes some text describing the page</p>
-				<p><a class="btn btn-primary btn-small" id="click">More &raquo;</a></p>
-				<div id="robin">
-				    <p>Please enable Javascript to view this slideshow</p>
-				</div>
+				
 	           </div><!--/well-->
 	
 			<div class="span10" id="boxes-container">
@@ -115,12 +112,7 @@
     <script src="../assets/js/bootstrap-carousel.js"></script>
     <script src="../assets/js/bootstrap-typeahead.js"></script>
 
-	
-	<script src="http://www.flickrshow.co.uk/static/scripts/flickrshow-7.2.min.js"></script>
-	<script>
-	   // var robin = new flickrshow('robin');
-		
-	</script>
+
 
 	<!-- additional javascript-->
 	<script src="/socket.io/socket.io.js"></script>
@@ -134,13 +126,7 @@
 	<script type = "text/javascript">
 	$(document).ready(function()
 	    {
-			var robin = new flickrshow('robin', { // http://www.flickr.com/photos/idemolab/sets/72157630928626962/
-			        'set':'72157630928626962',
-					'autoplay':true,
-					// 'tags':'smutti',
-					// 					'user':'77853327@N05',
-			    });
-		
+			
 		
 		
 		$('#click').click(function() {
@@ -166,15 +152,17 @@
 			
 			
 			/* ** SOCKET CONNECTIONS on twitter and twitter-stream ** */
-		//	var socket = io.connect('http://localhost:8000');
-	  		var socket = io.connect('http://192.168.2.249:8000'); // mac mini on idemolab wifi
+			var socket = io.connect('http://localhost:8000');
+	  	//	var socket = io.connect('http://192.168.2.249:8000'); // mac mini on idemolab wifi
 	  		
 			// when a new result is sent from the stream update the corresponding box
 			socket.on('twitter_stream',function(data){
+
 				update_people_boxes(data); 
-				twttr.anywhere(function(twitter) {
-						twitter(".box").linkifyUsers();
-						});
+				//create_people_page([data]);
+			//	twttr.anywhere(function(twitter) {
+			//			twitter(".box").linkifyUsers();
+			//			});
 
 			});
 			
@@ -197,13 +185,14 @@
 						pageCarousel();
 				}
 				else{	
-					$("#boxes-container").html("");
+					$("#boxes-container").html("ciao mamma");
+					console.log("mydebug",timeline);
 					create_people_page(timeline);
 					pageCarousel();
 				}
-				twttr.anywhere(function(twitter) {
-						twitter(".box").linkifyUsers();
-						});
+			//	twttr.anywhere(function(twitter) {
+			//			twitter(".box").linkifyUsers();
+			//			});
 	  		});
 			
 		
