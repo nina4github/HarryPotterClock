@@ -16,4 +16,4 @@ gen/
 local.properties
 
 # personal keys 
-twitterconfig.js
+twitterconfig.json
